@@ -1,17 +1,18 @@
 import React from "react";
-import { getArticles, getTopics } from "../utils/api";
 import { Link } from "@reach/router";
+import { getTopics, getArticlesByTopic } from "../utils/api";
 
-class Homepage extends React.Component {
+class Topic extends React.Component {
   state = {
     articles: [],
     topics: [],
+    topic: "",
     isLoading: true,
   };
 
   componentDidMount() {
-    getArticles().then((articles) => {
-      this.setState({ articles: articles });
+    getArticlesByTopic(this.props.slug).then((articles) => {
+      this.setState({ articles: articles, topic: this.props.slug });
     });
     getTopics().then((topics) => {
       this.setState({ topics: topics, isLoading: false });
@@ -37,15 +38,7 @@ class Homepage extends React.Component {
           })}
         </div>
         <ul className="articles">
-          <h2>Articles</h2>
-          <p>
-            Below you can find a list of all our articles, click the article to
-            read it, upvote it, and comment!
-          </p>
-          <p>
-            You can also sort articles by the topics on the left by clicking on
-            them.
-          </p>
+          <h2>Articles about {this.state.topic}</h2>
           {this.state.articles.map((article) => {
             return (
               <li key={article.article_id} className="listItem">
@@ -65,4 +58,4 @@ class Homepage extends React.Component {
   }
 }
 
-export default Homepage;
+export default Topic;

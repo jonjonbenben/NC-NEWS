@@ -1,11 +1,14 @@
 import { Link } from "@reach/router";
 
-export const Navbar = () => {
+export const Navbar = (props) => {
   return (
     <nav>
-      <Link className="nav-item" to="/">
-        Home
-      </Link>
+      <div className="buttons">
+        <Link className="nav-item" to="/">
+          Home
+        </Link>
+      </div>
+      <h1 className="welcomeMessage">{props.welcomeMessage}</h1>
     </nav>
   );
 };
