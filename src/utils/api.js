@@ -33,3 +33,18 @@ export const getArticlesByTopic = (slug) => {
     return res.data.articles;
   });
 };
+
+export const updateArticleVotes = (id, increment) => {
+  return newsApi.patch(`/articles/${id}`, { inc_votes: increment });
+};
+
+export const updateCommentVotes = (id, increment) => {
+  return newsApi.patch(`/comments/${id}`, { inc_votes: increment });
+};
+
+export const addComment = (article_id, body) => {
+  return newsApi.post(`/articles/${article_id}/comments`, {
+    username: "tickle122",
+    body: body,
+  });
+};

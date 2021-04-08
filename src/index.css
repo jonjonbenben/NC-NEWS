@@ -87,3 +87,12 @@ nav {
   text-decoration: none;
   color: black;
 }
+
+.plus {
+  background-color: green;
+  border-radius: 6px;
+}
+.minus {
+  background-color: red;
+  border-radius: 6px;
+}

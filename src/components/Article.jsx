@@ -1,4 +1,7 @@
 import { getArticlesById, getCommentsByArticle } from "../utils/api";
+import UpdateVotes from "./UpdateVotes";
+import UpdateCommentVotes from "./UpdateCommentVotes";
+import CommentAdder from "./CommentAdder";
 import React from "react";
 
 class Article extends React.Component {
@@ -14,6 +17,7 @@ class Article extends React.Component {
     });
     getArticlesById(this.props.article_id).then((article) => {
       this.setState({ article: article, isLoading: false });
+      this.props.getArticleName(article.title);
     });
   }
 
@@ -27,13 +31,19 @@ class Article extends React.Component {
         <h2>{this.state.article.title}</h2>
         <p className="author"> By {this.state.article.author}</p>
         <p>{this.state.article.body}</p>
-        <button>Upvote</button>
-        <button>Downvote</button>
-        <p>Total Votes: {this.state.article.votes}</p>
+        <UpdateVotes
+          article_id={this.state.article.article_id}
+          votes={this.state.article.votes}
+        />
+        <CommentAdder article_id={this.state.article.article_id} />
         {this.state.comments.map((comment) => {
           return (
             <div key={comment.comment_id}>
               <p>{comment.body}</p>
+              <UpdateCommentVotes
+                comment_id={comment.comment_id}
+                votes={comment.votes}
+              />
               <p className="author">by {comment.author}</p>
             </div>
           );

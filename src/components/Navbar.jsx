@@ -1,6 +1,10 @@
 import { Link } from "@reach/router";
 
 export const Navbar = (props) => {
+  let navBarMessage = "Welcome to JBook";
+  if (props.articleName !== "") {
+    navBarMessage = props.articleName;
+  }
   return (
     <nav>
       <div className="buttons">
@@ -8,7 +12,7 @@ export const Navbar = (props) => {
           Home
         </Link>
       </div>
-      <h1 className="welcomeMessage">{props.welcomeMessage}</h1>
+      <h1 className="welcomeMessage">{navBarMessage}</h1>
     </nav>
   );
 };

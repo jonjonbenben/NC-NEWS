@@ -18,6 +18,13 @@ class Topic extends React.Component {
       this.setState({ topics: topics, isLoading: false });
     });
   }
+  componentDidUpdate(prevProps) {
+    if (this.props.slug !== prevProps.slug) {
+      getArticlesByTopic(this.props.slug).then((articles) => {
+        this.setState({ articles: articles, topic: this.props.slug });
+      });
+    }
+  }
 
   render() {
     return this.state.isLoading ? (
