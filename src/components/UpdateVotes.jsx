@@ -18,7 +18,7 @@ class UpdateVotes extends React.Component {
     const article_id = this.props.article_id;
     const votes = this.props.votes;
     return (
-      <div>
+      <div className="votes">
         <button
           className="plus"
           onClick={() => this.updateVotes(article_id, 1)}

@@ -35,11 +35,13 @@ class Article extends React.Component {
           article_id={this.state.article.article_id}
           votes={this.state.article.votes}
         />
+        <hr></hr>
         <CommentAdder article_id={this.state.article.article_id} />
+        <hr></hr>
         {this.state.comments.map((comment) => {
           return (
             <div key={comment.comment_id}>
-              <p>{comment.body}</p>
+              <p className="commentBody">{comment.body}</p>
               <UpdateCommentVotes
                 comment_id={comment.comment_id}
                 votes={comment.votes}

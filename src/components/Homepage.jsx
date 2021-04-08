@@ -1,5 +1,5 @@
 import React from "react";
-import { getArticles, getTopics } from "../utils/api";
+import { getArticles, getTopics, getArticlesSortedVotes } from "../utils/api";
 import { Link } from "@reach/router";
 
 class Homepage extends React.Component {
@@ -26,13 +26,14 @@ class Homepage extends React.Component {
     ) : (
       <div className="grid">
         <div className="topics">
+          <h2>Filter By</h2>
           {this.state.topics.map((topic) => {
             return (
-              <p>
-                <Link to={`/topics/${topic.slug}`} className="topic">
+              <h3 className="topic">
+                <Link to={`/topics/${topic.slug}`} className="text">
                   {topic.slug}
                 </Link>
-              </p>
+              </h3>
             );
           })}
         </div>
@@ -55,7 +56,10 @@ class Homepage extends React.Component {
                 >
                   {article.title}
                 </Link>
-                <p className="author"> by {article.author}</p>
+                <p className="author">
+                  {" "}
+                  by {article.author}, Votes: {article.votes}
+                </p>
               </li>
             );
           })}

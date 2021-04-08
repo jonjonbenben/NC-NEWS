@@ -34,13 +34,14 @@ class Topic extends React.Component {
     ) : (
       <div className="grid">
         <div className="topics">
+          <h2>Filter By</h2>
           {this.state.topics.map((topic) => {
             return (
-              <p>
-                <Link to={`/topics/${topic.slug}`} className="topic">
+              <h3 className="topic">
+                <Link to={`/topics/${topic.slug}`} className="text">
                   {topic.slug}
                 </Link>
-              </p>
+              </h3>
             );
           })}
         </div>

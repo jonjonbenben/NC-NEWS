@@ -10,6 +10,12 @@ export const getArticles = () => {
   });
 };
 
+export const getArticlesSortedVotes = () => {
+  return newsApi.get("/articles?sort_by=votes").then((res) => {
+    return res.data.articles;
+  });
+};
+
 export const getTopics = () => {
   return newsApi.get("/topics").then((res) => {
     return res.data.topics;

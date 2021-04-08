@@ -33,3 +33,4 @@ class App extends React.Component {
 export default App;
 
 //can do multiple navbars in router depensing on the path
+//add a way to filter the articles
