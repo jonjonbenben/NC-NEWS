@@ -34,11 +34,14 @@ class App extends React.Component {
 export default App;
 
 //add sort by homepage changes to the filterby page
+//how to add class to submit button to style it and how to change its text
+//how to conditionally render the delete button? can i use an if or does it ahve to be ternary
+//why are there two css files?
 
-//sort out the header message not switching no return to homepage
-//add a way to filter the articles
-//topic and homepage are very simialr components
+//sort out the header message not switching on return to homepage
+//topic and homepage are very simialr components in terms of code
 //HAvent implemented errors yet
 //havent implemented the voting while offline feature
 //comment doesnt add unless you reload the page
 //delete comment doesnt work unless reload
+//filter by text goes massive in phone mode

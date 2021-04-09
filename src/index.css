@@ -24,7 +24,13 @@ nav {
   text-align: center;
   margin: auto;
 }
+
+.articleMessage {
+  width: 60%;
+}
+
 .nav-item {
+  border-radius: 5px;
   color: aliceblue;
   outline: none;
   text-decoration: none;
@@ -59,10 +65,21 @@ nav {
 
 .author {
   border-style: solid;
+  border-radius: 5px;
   text-align: center;
-  width: 20%;
-  margin: 2% 39%;
-  padding: 1% 1%;
+  width: 15%;
+  margin: 2vw 43vw;
+  padding: 1% 0%;
+  background-color: #457b9d;
+}
+
+.authorHomepage {
+  border-style: solid;
+  border-radius: 5px;
+  text-align: center;
+  width: 15%;
+  margin: 2vw 34vw;
+  padding: 1% 0%;
   background-color: #457b9d;
 }
 
@@ -72,6 +89,7 @@ nav {
   font-size: x-large;
   border-style: solid;
   border-color: black;
+  border-radius: 5px;
   padding: 5px;
   background-color: #a8dadc;
 }
@@ -88,6 +106,9 @@ nav {
   text-decoration: none;
   color: black;
   border-radius: 6px;
+  font-size: larger;
+  font-weight: bold;
+  text-transform: capitalize;
 }
 
 .plus {
@@ -127,4 +148,19 @@ nav {
 .text {
   text-decoration: none;
   color: #1d3557;
+}
+
+.button {
+  border: none;
+  padding: 3%;
+  cursor: pointer;
+  background-color: #a8dadc;
+  font-size: larger;
+  color: #1d3557;
+  font-weight: bold;
+}
+
+.articleBody {
+  line-height: 300%;
+  padding: 1% 10%;
 }

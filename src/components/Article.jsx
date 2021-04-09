@@ -38,7 +38,7 @@ class Article extends React.Component {
       <>
         {/* <h2>{this.state.article.title}</h2> */}
         <p className="author"> By {this.state.article.author}</p>
-        <p>{this.state.article.body}</p>
+        <p className="articleBody">{this.state.article.body}</p>
         <UpdateVotes
           article_id={this.state.article.article_id}
           votes={this.state.article.votes}
@@ -52,6 +52,7 @@ class Article extends React.Component {
               <p className="commentBody">
                 {comment.body}{" "}
                 <button
+                  className="minus"
                   onClick={() =>
                     this.invokeDeleteComment(comment.comment_id, comment.author)
                   }

@@ -46,28 +46,33 @@ class Homepage extends React.Component {
           <h2>Filter By</h2>
           {this.state.topics.map((topic) => {
             return (
-              <h3 className="topic">
+              <p className="topic">
                 <Link to={`/topics/${topic.slug}`} className="text">
                   {topic.slug}
                 </Link>
-              </h3>
+              </p>
             );
           })}
           <div className="sortBy">
             <h2>Sort By</h2>
-            <h3 className="topic">
-              <button onClick={() => this.sortByVotes()}>Votes</button>
-            </h3>
-            <h3 className="topic">
-              <button onClick={() => this.sortByCreatedAt()}>
+            <p className="topic">
+              <button className="button" onClick={() => this.sortByVotes()}>
+                Votes
+              </button>
+            </p>
+            <p className="topic">
+              <button className="button" onClick={() => this.sortByCreatedAt()}>
                 Date Created
               </button>
-            </h3>
-            <h3 className="topic">
-              <button onClick={() => this.sortByCommentCount()}>
+            </p>
+            <p className="topic">
+              <button
+                className="button"
+                onClick={() => this.sortByCommentCount()}
+              >
                 Comment Number
               </button>
-            </h3>
+            </p>
           </div>
         </div>
         <ul className="articles">
@@ -89,7 +94,7 @@ class Homepage extends React.Component {
                 >
                   {article.title}
                 </Link>
-                <p className="author">
+                <p className="authorHomepage">
                   {" "}
                   by {article.author}, Votes: {article.votes}, Comments:{" "}
                   {article.comment_count}
