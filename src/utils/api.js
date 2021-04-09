@@ -9,6 +9,11 @@ export const getArticles = () => {
     return res.data.articles;
   });
 };
+export const getArticlesByTopic = (slug) => {
+  return newsApi.get(`/articles?topic=${slug}`).then((res) => {
+    return res.data.articles;
+  });
+};
 
 export const getArticlesSorted = (sortParam) => {
   return newsApi.get(`/articles?sort_by=${sortParam}`).then((res) => {
@@ -34,18 +39,8 @@ export const getCommentsByArticle = (id) => {
   });
 };
 
-export const getArticlesByTopic = (slug) => {
-  return newsApi.get(`/articles?topic=${slug}`).then((res) => {
-    return res.data.articles;
-  });
-};
-
-export const updateArticleVotes = (id, increment) => {
-  return newsApi.patch(`/articles/${id}`, { inc_votes: increment });
-};
-
-export const updateCommentVotes = (id, increment) => {
-  return newsApi.patch(`/comments/${id}`, { inc_votes: increment });
+export const updateVotes = (id, increment, element) => {
+  return newsApi.patch(`/${element}/${id}`, { inc_votes: increment });
 };
 
 export const addComment = (article_id, body) => {

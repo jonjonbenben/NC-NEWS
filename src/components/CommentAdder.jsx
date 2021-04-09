@@ -1,8 +1,8 @@
 import React from "react";
-import { addComment } from "../utils/api";
+import { addComment, getCommentsByArticle } from "../utils/api";
 
 class CommentAdder extends React.Component {
-  state = { comment: "" };
+  state = { comment: "", comments: [] };
 
   handleChange = (event) => {
     console.log(event);
@@ -13,7 +13,11 @@ class CommentAdder extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    addComment(this.props.article_id, this.state.comment);
+    addComment(this.props.article_id, this.state.comment).then(() => {
+      getCommentsByArticle(this.props.article_id).then((comments) => {
+        this.props.updateComments(comments);
+      });
+    });
   };
 
   render() {
@@ -30,7 +34,7 @@ class CommentAdder extends React.Component {
             value={comment}
             className="inputBox"
           ></input>
-          <input type="submit" value="Submit" />
+          <button className="plus">Submit</button>
         </form>
       </>
     );

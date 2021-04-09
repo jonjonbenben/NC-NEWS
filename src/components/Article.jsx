@@ -4,7 +4,6 @@ import {
   deleteComment,
 } from "../utils/api";
 import UpdateVotes from "./UpdateVotes";
-import UpdateCommentVotes from "./UpdateCommentVotes";
 import CommentAdder from "./CommentAdder";
 import React from "react";
 
@@ -26,9 +25,16 @@ class Article extends React.Component {
   }
   invokeDeleteComment(comment_id, author) {
     if (this.props.user === author) {
-      deleteComment(comment_id);
+      deleteComment(comment_id).then(() => {
+        getCommentsByArticle(this.props.article_id).then((comments) => {
+          this.setState({ comments: comments });
+        });
+      });
     }
   }
+  updateComments = (comments) => {
+    this.setState({ comments: comments });
+  };
   render() {
     return this.state.isLoading ? (
       <div>
@@ -36,15 +42,18 @@ class Article extends React.Component {
       </div>
     ) : (
       <>
-        {/* <h2>{this.state.article.title}</h2> */}
         <p className="author"> By {this.state.article.author}</p>
         <p className="articleBody">{this.state.article.body}</p>
         <UpdateVotes
           article_id={this.state.article.article_id}
           votes={this.state.article.votes}
+          for="articles"
         />
         <hr></hr>
-        <CommentAdder article_id={this.state.article.article_id} />
+        <CommentAdder
+          updateComments={this.updateComments}
+          article_id={this.state.article.article_id}
+        />
         <hr></hr>
         {this.state.comments.map((comment) => {
           return (
@@ -60,9 +69,10 @@ class Article extends React.Component {
                   Delete
                 </button>
               </p>
-              <UpdateCommentVotes
+              <UpdateVotes
                 comment_id={comment.comment_id}
                 votes={comment.votes}
+                for="comments"
               />
               <p className="author">by {comment.author}</p>
             </div>

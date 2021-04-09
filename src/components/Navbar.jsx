@@ -1,11 +1,10 @@
 import { Link } from "@reach/router";
+import React from "react";
 
-export const Navbar = (props) => {
-  let navBarMessage = "Welcome to JBook";
-  let messageClassName = "welcomeMessage";
-  if (props.articleName !== "") {
-    navBarMessage = props.articleName;
-    messageClassName = "articleMessage";
+const Navbar = (props) => {
+  let className = "welcomeMessage";
+  if (props.articleName !== "Welcome to JBook") {
+    className = "articleMessage";
   }
   return (
     <nav>
@@ -15,7 +14,9 @@ export const Navbar = (props) => {
         </Link>
         <p>Logged in as {props.user}</p>
       </div>
-      <h1 className={messageClassName}>{navBarMessage}</h1>
+      <h1 className={className}>{props.articleName}</h1>
     </nav>
   );
 };
+
+export default Navbar;

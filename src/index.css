@@ -71,6 +71,7 @@ nav {
   margin: 2vw 43vw;
   padding: 1% 0%;
   background-color: #457b9d;
+  border-color: #e63946;
 }
 
 .authorHomepage {
@@ -78,9 +79,11 @@ nav {
   border-radius: 5px;
   text-align: center;
   width: 15%;
-  margin: 2vw 34vw;
-  padding: 1% 0%;
+  margin: 0vw 33vw;
+  margin-top: 0;
+  padding: 1% 1%;
   background-color: #457b9d;
+  border-color: #e63946;
 }
 
 .article {
@@ -94,7 +97,7 @@ nav {
   background-color: #a8dadc;
 }
 .listItem {
-  margin-top: 50px;
+  margin-top: 70px;
 }
 
 .topic {
@@ -163,4 +166,8 @@ nav {
 .articleBody {
   line-height: 300%;
   padding: 1% 10%;
+}
+
+.createdAt {
+  padding: 0;
 }

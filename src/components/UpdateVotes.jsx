@@ -1,11 +1,12 @@
 import React from "react";
-import { updateArticleVotes } from "../utils/api";
+import { updateVotes } from "../utils/api";
 
 class UpdateVotes extends React.Component {
   state = { voteChange: 0 };
+  thingWeVoteOn = this.props.for;
 
-  updateVotes = (article_id, increment) => {
-    updateArticleVotes(article_id, increment).then(() => {
+  updateVotes = (id, increment) => {
+    updateVotes(id, increment, this.thingWeVoteOn).then(() => {
       this.setState((currState) => {
         return {
           voteChange: currState.voteChange + increment,
@@ -15,21 +16,20 @@ class UpdateVotes extends React.Component {
   };
 
   render() {
-    const article_id = this.props.article_id;
+    let id = "";
+    if (this.thingWeVoteOn === "articles") {
+      id = this.props.article_id;
+    } else if (this.thingWeVoteOn === "comments") {
+      id = this.props.comment_id;
+    }
     const votes = this.props.votes;
     return (
       <div className="votes">
-        <button
-          className="plus"
-          onClick={() => this.updateVotes(article_id, 1)}
-        >
+        <button className="plus" onClick={() => this.updateVotes(id, 1)}>
           +
         </button>
         <p>{votes + this.state.voteChange} Votes</p>
-        <button
-          className="minus"
-          onClick={() => this.updateVotes(article_id, -1)}
-        >
+        <button className="minus" onClick={() => this.updateVotes(id, -1)}>
           -
         </button>
       </div>
