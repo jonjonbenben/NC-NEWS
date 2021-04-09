@@ -11,6 +11,7 @@ export const Navbar = (props) => {
         <Link className="nav-item" to="/">
           Home
         </Link>
+        <p>Logged in as {props.user}</p>
       </div>
       <h1 className="welcomeMessage">{navBarMessage}</h1>
     </nav>

@@ -10,8 +10,8 @@ export const getArticles = () => {
   });
 };
 
-export const getArticlesSortedVotes = () => {
-  return newsApi.get("/articles?sort_by=votes").then((res) => {
+export const getArticlesSorted = (sortParam) => {
+  return newsApi.get(`/articles?sort_by=${sortParam}`).then((res) => {
     return res.data.articles;
   });
 };
@@ -53,4 +53,8 @@ export const addComment = (article_id, body) => {
     username: "tickle122",
     body: body,
   });
+};
+
+export const deleteComment = (comment_id) => {
+  return newsApi.delete(`/comments/${comment_id}`);
 };

@@ -1,4 +1,8 @@
-import { getArticlesById, getCommentsByArticle } from "../utils/api";
+import {
+  getArticlesById,
+  getCommentsByArticle,
+  deleteComment,
+} from "../utils/api";
 import UpdateVotes from "./UpdateVotes";
 import UpdateCommentVotes from "./UpdateCommentVotes";
 import CommentAdder from "./CommentAdder";
@@ -20,7 +24,11 @@ class Article extends React.Component {
       this.props.getArticleName(article.title);
     });
   }
-
+  invokeDeleteComment(comment_id, author) {
+    if (this.props.user === author) {
+      deleteComment(comment_id);
+    }
+  }
   render() {
     return this.state.isLoading ? (
       <div>
@@ -28,7 +36,7 @@ class Article extends React.Component {
       </div>
     ) : (
       <>
-        <h2>{this.state.article.title}</h2>
+        {/* <h2>{this.state.article.title}</h2> */}
         <p className="author"> By {this.state.article.author}</p>
         <p>{this.state.article.body}</p>
         <UpdateVotes
@@ -41,7 +49,16 @@ class Article extends React.Component {
         {this.state.comments.map((comment) => {
           return (
             <div key={comment.comment_id}>
-              <p className="commentBody">{comment.body}</p>
+              <p className="commentBody">
+                {comment.body}{" "}
+                <button
+                  onClick={() =>
+                    this.invokeDeleteComment(comment.comment_id, comment.author)
+                  }
+                >
+                  Delete
+                </button>
+              </p>
               <UpdateCommentVotes
                 comment_id={comment.comment_id}
                 votes={comment.votes}

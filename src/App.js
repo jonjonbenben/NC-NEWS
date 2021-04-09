@@ -7,7 +7,7 @@ import React from "react";
 import Topic from "./components/Topic";
 
 class App extends React.Component {
-  state = { articleName: "" };
+  state = { articleName: "", user: "tickle122" };
 
   getArticleName = (articleName) => {
     this.setState({ articleName: articleName });
@@ -16,13 +16,14 @@ class App extends React.Component {
     return (
       <div className="App">
         <header className="App-header"></header>
-        <Navbar articleName={this.state.articleName} />
+        <Navbar articleName={this.state.articleName} user={this.state.user} />
         <Router>
           <Homepage path="/" />
           <Topic path="/topics/:slug" />
           <Article
             path="/articles/:article_id"
             getArticleName={this.getArticleName}
+            user={this.state.user}
           />
         </Router>
       </div>
@@ -32,5 +33,12 @@ class App extends React.Component {
 
 export default App;
 
-//can do multiple navbars in router depensing on the path
+//add sort by homepage changes to the filterby page
+
+//sort out the header message not switching no return to homepage
 //add a way to filter the articles
+//topic and homepage are very simialr components
+//HAvent implemented errors yet
+//havent implemented the voting while offline feature
+//comment doesnt add unless you reload the page
+//delete comment doesnt work unless reload

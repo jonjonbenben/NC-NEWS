@@ -1,5 +1,5 @@
 import React from "react";
-import { getArticles, getTopics, getArticlesSortedVotes } from "../utils/api";
+import { getArticles, getTopics, getArticlesSorted } from "../utils/api";
 import { Link } from "@reach/router";
 
 class Homepage extends React.Component {
@@ -17,6 +17,23 @@ class Homepage extends React.Component {
       this.setState({ topics: topics, isLoading: false });
     });
   }
+  sortByVotes = () => {
+    getArticlesSorted("votes").then((articles) => {
+      this.setState({ articles: articles });
+    });
+  };
+
+  sortByCreatedAt = () => {
+    getArticlesSorted("created_at").then((articles) => {
+      this.setState({ articles: articles });
+    });
+  };
+
+  sortByCommentCount = () => {
+    getArticlesSorted("comment_count").then((articles) => {
+      this.setState({ articles: articles });
+    });
+  };
 
   render() {
     return this.state.isLoading ? (
@@ -36,6 +53,22 @@ class Homepage extends React.Component {
               </h3>
             );
           })}
+          <div className="sortBy">
+            <h2>Sort By</h2>
+            <h3 className="topic">
+              <button onClick={() => this.sortByVotes()}>Votes</button>
+            </h3>
+            <h3 className="topic">
+              <button onClick={() => this.sortByCreatedAt()}>
+                Date Created
+              </button>
+            </h3>
+            <h3 className="topic">
+              <button onClick={() => this.sortByCommentCount()}>
+                Comment Number
+              </button>
+            </h3>
+          </div>
         </div>
         <ul className="articles">
           <h2>Articles</h2>
@@ -58,7 +91,8 @@ class Homepage extends React.Component {
                 </Link>
                 <p className="author">
                   {" "}
-                  by {article.author}, Votes: {article.votes}
+                  by {article.author}, Votes: {article.votes}, Comments:{" "}
+                  {article.comment_count}
                 </p>
               </li>
             );
